@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_flutter/constants/colors.dart';
+import 'package:portfolio_flutter/constants/projects.dart';
 import 'package:portfolio_flutter/constants/size.dart';
 import 'package:portfolio_flutter/widgets/about_me.dart';
 import 'package:portfolio_flutter/widgets/drawer_mobile.dart';
@@ -50,7 +51,17 @@ class _HomePageState extends State<HomePage> {
               // Experience
               //Container(height: 500, width: double.infinity),
               // Projects
-              Projects(screenWidth: screenWidth),
+              Projects(
+                title: "Work Projects",
+                projects: projects,
+                screenWidth: screenWidth,
+              ),
+
+              Projects(
+                title: "Personal Projects",
+                projects: projects,
+                screenWidth: screenWidth,
+              ),
               // Contanct
               //Container(height: 500, width: double.infinity),
             ],

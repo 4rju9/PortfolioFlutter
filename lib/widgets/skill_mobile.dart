@@ -14,11 +14,11 @@ class SkillMobile extends StatelessWidget {
         children: [
           for (int i = 0; i < platformItems.length; i++)
             Container(
-              margin: EdgeInsets.only(bottom: 5),
+              margin: EdgeInsets.only(bottom: 8),
               width: double.maxFinite,
               decoration: BoxDecoration(
                 color: CustomColor.bgLight2,
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: ListTile(
                 contentPadding: EdgeInsets.symmetric(

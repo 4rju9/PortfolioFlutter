@@ -23,7 +23,7 @@ class SkillDesktop extends StatelessWidget {
                     width: 200,
                     decoration: BoxDecoration(
                       color: CustomColor.bgLight2,
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: ListTile(
                       contentPadding: const EdgeInsets.symmetric(
