@@ -44,10 +44,21 @@ class AboutMeInfo extends StatelessWidget {
             spacing: 60,
             runSpacing: 20,
             children: [
-              infoItem("Name:", DeveloperInformation.name),
-              infoItem("Date of birth:", DeveloperInformation.dob),
-              infoItem("Home Town:", DeveloperInformation.address),
-              infoItem("Email:", DeveloperInformation.email),
+              infoItem(title: "Name:", value: DeveloperInformation.name),
+              infoItem(
+                title: "Date of birth:",
+                value: DeveloperInformation.dob,
+              ),
+              infoItem(
+                title: "Home Town:",
+                value: DeveloperInformation.address,
+              ),
+              infoItem(
+                title: "Email:",
+                value: DeveloperInformation.email,
+                clickable: true,
+                url: "mailto:${DeveloperInformation.email}",
+              ),
             ],
           ),
 
@@ -57,6 +68,7 @@ class AboutMeInfo extends StatelessWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              backgroundColor: CustomColor.purpleTertiary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
               ),
@@ -67,7 +79,7 @@ class AboutMeInfo extends StatelessWidget {
               style: TextStyle(
                 letterSpacing: 2,
                 fontWeight: FontWeight.bold,
-                color: CustomColor.purple,
+                color: CustomColor.purpleSecondary,
               ),
             ),
           ),

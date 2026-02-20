@@ -103,3 +103,48 @@ final List<Project> projects = [
     ],
   ),
 ];
+
+final List<Project> workProjects = [
+  Project(
+    "Edupapy",
+    "Edupapy enables Parents/Guardians to pay school fees easily through the app. "
+        "1. Direct in-app fee payments connected with schools. "
+        "2. Instant confirmations with digital receipts. "
+        "3. Secure OTP-based login for safe transactions. "
+        "4. Simple, parent-friendly interface with regular updates.",
+    "assets/workprojects/edupay.jpg",
+    [
+      PlatformLink(
+        "assets/icons/android.png",
+        "https://play.google.com/store/apps/details?id=com.edu.edupay&pcampaignid=web_share",
+      ),
+    ],
+  ),
+  Project(
+    "RBT (Ring Back Tone)",
+    "RBT lets users replace default ring sounds with custom tones for callers. "
+        "Browse trending tones, set tones for contacts, manage subscriptions, and activate instantly. "
+        "Provides a smooth interface and personalized calling experience.",
+    "assets/workprojects/rbt.jpg",
+    [
+      PlatformLink(
+        "assets/icons/android.png",
+        "https://play.google.com/store/apps/details?id=com.rbt.customerapp&pcampaignid=web_share",
+      ),
+    ],
+  ),
+  Project(
+    "ShowBox (OTT App)",
+    "ShowBox is a Zee5-like OTT platform under development for streaming dramas and videos. "
+        "Built with Clean Architecture, Jetpack Compose, Koin, Retrofit, and ExoPlayer. "
+        "Uses Room for storage and DataStore for encrypted preferences. "
+        "Focused on performance and smooth streaming.",
+    "assets/workprojects/showbox.jpg",
+    [
+      PlatformLink(
+        "assets/icons/android.png",
+        "https://play.google.com/store/apps/developer?id=Krishil7",
+      ),
+    ],
+  ),
+];

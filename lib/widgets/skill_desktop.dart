@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_flutter/constants/colors.dart';
 import 'package:portfolio_flutter/constants/skill_items.dart';
+import 'package:portfolio_flutter/widgets/hover_platform_skill.dart';
 import 'package:portfolio_flutter/widgets/skill_independent.dart';
 
-class SkillDesktop extends StatelessWidget {
-  const SkillDesktop({super.key});
+class SkillDesktop extends StatefulWidget {
+  final bool isMobile;
+  const SkillDesktop({super.key, required this.isMobile});
 
+  @override
+  State<SkillDesktop> createState() => _SkillDesktopState();
+}
+
+class _SkillDesktopState extends State<SkillDesktop> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,32 +23,21 @@ class SkillDesktop extends StatelessWidget {
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: platformItems
-                .map(
-                  (platform) => Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: CustomColor.bgLight2,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
-                      ),
-                      leading: Image.asset(platform.img, width: 26),
-                      title: Text(platform.title),
-                    ),
-                  ),
-                )
-                .toList(),
+            children: platformItems.map((item) {
+              return HoverSkillTile(
+                title: item.title,
+                imagePath: item.img,
+                width: 200,
+                isMobile: widget.isMobile,
+              );
+            }).toList(),
           ),
         ),
         const SizedBox(width: 35),
         Flexible(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 500),
-            child: const SkillIndependent(),
+            child: SkillIndependent(isMobile: widget.isMobile),
           ),
         ),
       ],

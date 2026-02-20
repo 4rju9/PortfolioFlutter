@@ -3,6 +3,7 @@ import 'package:portfolio_flutter/constants/colors.dart';
 import 'package:portfolio_flutter/constants/projects.dart';
 import 'package:portfolio_flutter/constants/size.dart';
 import 'package:portfolio_flutter/widgets/about_me.dart';
+import 'package:portfolio_flutter/widgets/contact_section.dart';
 import 'package:portfolio_flutter/widgets/drawer_mobile.dart';
 import 'package:portfolio_flutter/widgets/header_desktop.dart';
 import 'package:portfolio_flutter/widgets/header_mobile.dart';
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               // Projects
               Projects(
                 title: "Work Projects",
-                projects: projects,
+                projects: workProjects,
                 screenWidth: screenWidth,
               ),
 
@@ -63,7 +64,21 @@ class _HomePageState extends State<HomePage> {
                 screenWidth: screenWidth,
               ),
               // Contanct
-              //Container(height: 500, width: double.infinity),
+              ContactSection(screenWith: screenWidth),
+              // Footer
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                width: double.maxFinite,
+                alignment: Alignment.center,
+                child: Text(
+                  "Made with ❤️ by Arjun Gangwar.",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: CustomColor.purple,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
             ],
           ),
         );

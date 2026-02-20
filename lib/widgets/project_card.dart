@@ -26,16 +26,12 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (_) {
-        if (!widget.isMobile) {
-          setState(() => _isHovered = true);
-        }
+        setState(() => _isHovered = true);
       },
       onExit: (_) {
-        if (!widget.isMobile) {
-          setState(() => _isHovered = false);
-        }
+        setState(() => _isHovered = false);
       },
-      child: GestureDetector(
+      child: InkWell(
         onTapDown: (_) {
           if (widget.isMobile) {
             setState(() => _isHovered = true);
@@ -54,7 +50,7 @@ class _ProjectCardState extends State<ProjectCard> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
           width: (widget.isMobile) ? widget.width * 0.7 : widget.width * 0.4,
-          height: 280 + ((widget.isMobile) ? 20 : 0),
+          height: 300 + ((widget.isMobile) ? 20 : 0),
           constraints: BoxConstraints(maxWidth: (widget.isMobile) ? 400 : 380),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
@@ -107,25 +103,26 @@ class _ProjectCardState extends State<ProjectCard> {
                               ),
                             ),
                             const SizedBox(height: 12),
-                            Text(
-                              widget.project.description,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: CustomColor.whitePrimary,
-                                shadows: _isHovered
-                                    ? [
-                                        Shadow(
-                                          blurRadius: 10,
-                                          color: Colors.black.withValues(
-                                            alpha: 0.8,
+                            if (_isHovered)
+                              Text(
+                                widget.project.description,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: CustomColor.whitePrimary,
+                                  shadows: _isHovered
+                                      ? [
+                                          Shadow(
+                                            blurRadius: 10,
+                                            color: Colors.black.withValues(
+                                              alpha: 0.8,
+                                            ),
+                                            offset: const Offset(0, 3),
                                           ),
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ]
-                                    : [],
+                                        ]
+                                      : [],
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ),
@@ -135,7 +132,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   // Bottom bar
                   Container(
                     decoration: BoxDecoration(
-                      color: CustomColor.whiteSecondary,
+                      color: CustomColor.purpleTertiary,
                     ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 10,
@@ -161,7 +158,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         )
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: GestureDetector(
+                            child: InkWell(
                               onTap: () => openUrl(
                                 widget.project.availablePlatforms[i].source,
                               ),

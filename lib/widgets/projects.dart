@@ -19,7 +19,7 @@ class Projects extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth,
-      padding: EdgeInsets.fromLTRB(25, 20, 25, 0),
+      padding: EdgeInsets.fromLTRB(25, 20, 25, 30),
       child: Column(
         children: [
           Text(
