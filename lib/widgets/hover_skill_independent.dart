@@ -4,13 +4,11 @@ import 'package:portfolio_flutter/constants/colors.dart';
 class HoverSkillIndependent extends StatefulWidget {
   final String title;
   final String imagePath;
-  final bool isMobile;
 
   const HoverSkillIndependent({
     super.key,
     required this.title,
     required this.imagePath,
-    required this.isMobile,
   });
 
   @override
@@ -32,15 +30,9 @@ class _HoverSkillIndependent extends State<HoverSkillIndependent> {
       onEnter: (_) => _setHover(true),
       onExit: (_) => _setHover(false),
       child: InkWell(
-        onTapDown: (_) {
-          if (widget.isMobile) _setHover(true);
-        },
-        onTapUp: (_) {
-          if (widget.isMobile) _setHover(false);
-        },
-        onTapCancel: () {
-          if (widget.isMobile) _setHover(false);
-        },
+        onTapDown: (_) => _setHover(true),
+        onTapUp: (_) => _setHover(false),
+        onTapCancel: () => _setHover(false),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           child: Chip(

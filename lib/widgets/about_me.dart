@@ -14,7 +14,7 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       constraints: const BoxConstraints(minHeight: 500),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,7 +22,7 @@ class AboutMe extends StatelessWidget {
           /// LEFT SIDE IMAGE
           if (constraints.maxWidth >= kMinDesktopWidth)
             Expanded(
-              flex: 2,
+              flex: 3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(

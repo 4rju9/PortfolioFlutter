@@ -19,6 +19,7 @@ class Projects extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth,
+      color: CustomColor.bgLight2,
       padding: EdgeInsets.fromLTRB(25, 20, 25, 30),
       child: Column(
         children: [

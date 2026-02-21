@@ -106,6 +106,16 @@ final List<Project> projects = [
 
 final List<Project> workProjects = [
   Project(
+    "Waste Samaritan – Collector App",
+    "Waste Samaritan Collector App is a QR-enabled waste management solution "
+        "that helps field collectors record segregated waste pickups with photo, "
+        "time, and location proof. Includes property survey, waste collection tracking, "
+        "and map-based property view for route management. Supervisors can monitor "
+        "daily collections and manage field operations in real time.",
+    "assets/workprojects/collector.jpg",
+    [],
+  ),
+  Project(
     "Edupapy",
     "Edupapy enables Parents/Guardians to pay school fees easily through the app. "
         "1. Direct in-app fee payments connected with schools. "
@@ -115,7 +125,7 @@ final List<Project> workProjects = [
     "assets/workprojects/edupay.jpg",
     [
       PlatformLink(
-        "assets/icons/android.png",
+        "assets/icons/playstore.png",
         "https://play.google.com/store/apps/details?id=com.edu.edupay&pcampaignid=web_share",
       ),
     ],
@@ -128,7 +138,7 @@ final List<Project> workProjects = [
     "assets/workprojects/rbt.jpg",
     [
       PlatformLink(
-        "assets/icons/android.png",
+        "assets/icons/playstore.png",
         "https://play.google.com/store/apps/details?id=com.rbt.customerapp&pcampaignid=web_share",
       ),
     ],
@@ -142,7 +152,7 @@ final List<Project> workProjects = [
     "assets/workprojects/showbox.jpg",
     [
       PlatformLink(
-        "assets/icons/android.png",
+        "assets/icons/playstore.png",
         "https://play.google.com/store/apps/developer?id=Krishil7",
       ),
     ],

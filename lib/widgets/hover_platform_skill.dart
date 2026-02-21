@@ -6,7 +6,6 @@ class HoverSkillTile extends StatefulWidget {
   final String imagePath;
   final double width;
   final double margin;
-  final bool isMobile;
   final EdgeInsetsGeometry? contentPadding;
 
   const HoverSkillTile({
@@ -14,7 +13,6 @@ class HoverSkillTile extends StatefulWidget {
     required this.title,
     required this.imagePath,
     required this.width,
-    required this.isMobile,
     this.margin = 0,
     this.contentPadding,
   });
@@ -26,22 +24,21 @@ class HoverSkillTile extends StatefulWidget {
 class _HoverSkillTileState extends State<HoverSkillTile> {
   bool _isHovered = false;
 
+  void _setHover(bool value) {
+    if (_isHovered != value) {
+      setState(() => _isHovered = value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: InkWell(
-        onTapDown: (_) {
-          if (widget.isMobile) {
-            setState(() => _isHovered = true);
-          }
-        },
-        onTapUp: (_) {
-          if (widget.isMobile) {
-            setState(() => _isHovered = false);
-          }
-        },
+        onTapDown: (_) => _setHover(true),
+        onTapUp: (_) => _setHover(false),
+        onTapCancel: () => _setHover(false),
         child: AnimatedContainer(
           width: widget.width,
           margin: EdgeInsets.only(bottom: widget.margin),

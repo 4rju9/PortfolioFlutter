@@ -23,7 +23,6 @@ class _SkillMobileState extends State<SkillMobile> {
               title: platformItems[i].title,
               imagePath: platformItems[i].img,
               width: double.maxFinite,
-              isMobile: widget.isMobile,
               margin: 8,
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 10,

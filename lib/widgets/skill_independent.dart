@@ -13,11 +13,7 @@ class SkillIndependent extends StatelessWidget {
       runSpacing: 8,
       runAlignment: WrapAlignment.center,
       children: skillItems.map((skill) {
-        return HoverSkillIndependent(
-          title: skill.title,
-          imagePath: skill.img,
-          isMobile: isMobile,
-        );
+        return HoverSkillIndependent(title: skill.title, imagePath: skill.img);
       }).toList(),
     );
   }

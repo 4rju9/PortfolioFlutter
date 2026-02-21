@@ -5,7 +5,8 @@ import 'package:portfolio_flutter/styles/style.dart';
 import 'package:portfolio_flutter/widgets/main_logo.dart';
 
 class HeaderDesktop extends StatelessWidget {
-  const HeaderDesktop({super.key});
+  final Function(int) onTap;
+  const HeaderDesktop({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HeaderDesktop extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 20),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => onTap(i),
                 child: Text(
                   navTiles[i],
                   style: TextStyle(

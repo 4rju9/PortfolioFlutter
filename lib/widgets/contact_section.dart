@@ -1,20 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:portfolio_flutter/constants/app_secrets.dart';
 import 'package:portfolio_flutter/constants/colors.dart';
 import 'package:portfolio_flutter/constants/contact_items.dart';
 import 'package:portfolio_flutter/constants/size.dart';
 import 'package:portfolio_flutter/utils/url_opener.dart';
 import 'package:portfolio_flutter/widgets/custom_text_field.dart';
 
-class ContactSection extends StatelessWidget {
-  final double screenWith;
-  const ContactSection({super.key, required this.screenWith});
+class ContactSection extends StatefulWidget {
+  final double screenWidth;
+  const ContactSection({super.key, required this.screenWidth});
+
+  @override
+  State<ContactSection> createState() => _ContactSectionState();
+}
+
+class _ContactSectionState extends State<ContactSection> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _subjectController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _isSending = false;
+
+  Future<void> _sendForm() async {
+    final url = Uri.parse(formspree);
+
+    setState(() => _isSending = true);
+
+    await http.post(
+      url,
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      body: {
+        'name': _nameController.text,
+        '_replyto': _emailController.text,
+        'subject': _subjectController.text,
+        'message': _messageController.text,
+      },
+    );
+
+    setState(() => _isSending = false);
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text("Message sent successfully!")));
+    _nameController.clear();
+    _emailController.clear();
+    _subjectController.clear();
+    _messageController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 20),
-      color: CustomColor.bgLight1,
       child: Column(
         children: [
           const Text(
@@ -37,14 +76,15 @@ class ContactSection extends StatelessWidget {
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             constraints: BoxConstraints(
-              maxWidth: screenWith >= 1000 ? 1000 : screenWith * 0.9,
-              maxHeight: screenHeight * 0.65,
+              maxWidth: widget.screenWidth >= 1000
+                  ? 1000
+                  : widget.screenWidth * 0.9,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 children: [
-                  if (screenWith >= kMedDesktopWidth)
+                  if (widget.screenWidth >= kMedDesktopWidth)
                     Expanded(
                       flex: 2,
                       child: Padding(
@@ -59,19 +99,24 @@ class ContactSection extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (screenWith >= kMedDesktopWidth) const SizedBox(width: 30),
+                  if (widget.screenWidth >= kMedDesktopWidth)
+                    const SizedBox(width: 30),
                   Expanded(
                     flex: 3,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        (screenWith >= kMedDesktopWidth)
+                        (widget.screenWidth >= kMedDesktopWidth)
                             ? nameEmailDesktopBuilder()
                             : nameEmailMobileBuilder(),
                         const SizedBox(height: 16),
-                        CustomTextField(hintText: "Subject"),
+                        CustomTextField(
+                          controller: _subjectController,
+                          hintText: "Subject",
+                        ),
                         const SizedBox(height: 16),
                         CustomTextField(
+                          controller: _messageController,
                           hintText: "Message",
                           maxLines: 10,
                           contentPadding: const EdgeInsets.symmetric(
@@ -93,15 +138,21 @@ class ContactSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(40),
                               ),
                             ),
-                            onPressed: () => {},
-                            child: const Text(
-                              "Send",
-                              style: TextStyle(
-                                letterSpacing: 2,
-                                fontWeight: FontWeight.bold,
-                                color: CustomColor.bgLight1,
-                              ),
-                            ),
+                            onPressed: _isSending ? null : _sendForm,
+                            child: (_isSending)
+                                ? SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : const Text(
+                                    "Send",
+                                    style: TextStyle(
+                                      letterSpacing: 2,
+                                      fontWeight: FontWeight.bold,
+                                      color: CustomColor.bgLight1,
+                                    ),
+                                  ),
                           ),
                         ),
                       ],
@@ -138,9 +189,19 @@ class ContactSection extends StatelessWidget {
   Row nameEmailDesktopBuilder() {
     return Row(
       children: [
-        Flexible(child: CustomTextField(hintText: "Your Name")),
+        Flexible(
+          child: CustomTextField(
+            controller: _nameController,
+            hintText: "Your Name",
+          ),
+        ),
         const SizedBox(width: 16),
-        Flexible(child: CustomTextField(hintText: "Your Email")),
+        Flexible(
+          child: CustomTextField(
+            controller: _emailController,
+            hintText: "Your Email",
+          ),
+        ),
       ],
     );
   }
@@ -148,9 +209,9 @@ class ContactSection extends StatelessWidget {
   Column nameEmailMobileBuilder() {
     return Column(
       children: [
-        CustomTextField(hintText: "Your Name"),
+        CustomTextField(controller: _nameController, hintText: "Your Name"),
         const SizedBox(height: 16),
-        CustomTextField(hintText: "Your Email"),
+        CustomTextField(controller: _emailController, hintText: "Your Email"),
       ],
     );
   }

@@ -32,6 +32,7 @@ class _ProjectCardState extends State<ProjectCard> {
         setState(() => _isHovered = false);
       },
       child: InkWell(
+        borderRadius: BorderRadius.circular(20),
         onTapDown: (_) {
           if (widget.isMobile) {
             setState(() => _isHovered = true);
@@ -156,12 +157,12 @@ class _ProjectCardState extends State<ProjectCard> {
                           i < widget.project.availablePlatforms.length;
                           i++
                         )
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: InkWell(
-                              onTap: () => openUrl(
-                                widget.project.availablePlatforms[i].source,
-                              ),
+                          InkWell(
+                            onTap: () => openUrl(
+                              widget.project.availablePlatforms[i].source,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
                               child: Image.asset(
                                 widget.project.availablePlatforms[i].logo,
                                 width: 24,

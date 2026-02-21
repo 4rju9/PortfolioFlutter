@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_flutter/constants/colors.dart';
+import 'package:portfolio_flutter/constants/nav_items.dart';
 import 'package:portfolio_flutter/constants/projects.dart';
 import 'package:portfolio_flutter/constants/size.dart';
 import 'package:portfolio_flutter/widgets/about_me.dart';
 import 'package:portfolio_flutter/widgets/contact_section.dart';
 import 'package:portfolio_flutter/widgets/drawer_mobile.dart';
+import 'package:portfolio_flutter/widgets/experience_section.dart';
+import 'package:portfolio_flutter/widgets/footer.dart';
 import 'package:portfolio_flutter/widgets/header_desktop.dart';
 import 'package:portfolio_flutter/widgets/header_mobile.dart';
 import 'package:portfolio_flutter/widgets/projects.dart';
@@ -19,6 +22,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  final List<GlobalKey> navKeys = List.generate(
+    navTiles.length,
+    (index) => GlobalKey(),
+  );
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -31,51 +39,56 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: CustomColor.scaffoldBg,
           endDrawer: (constraints.maxWidth >= kMinDesktopWidth)
               ? null
-              : const DrawerMobile(),
-          body: ListView(
-            scrollDirection: Axis.vertical,
+              : DrawerMobile(onTap: animateToSection),
+          body: Column(
             children: [
-              // Main
               (constraints.maxWidth >= kMinDesktopWidth)
-                  ? const HeaderDesktop()
+                  ? HeaderDesktop(onTap: animateToSection)
                   : HeaderMobile(
                       onLogoTap: () {},
                       onMenuTap: () {
                         scaffoldKey.currentState?.openEndDrawer();
                       },
                     ),
-
-              AboutMe(constraints: constraints, screenWidth: screenWidth),
-
-              // Skills
-              Skills(screenWidth: screenWidth),
-              // Experience
-              //Container(height: 500, width: double.infinity),
-              // Projects
-              Projects(
-                title: "Work Projects",
-                projects: workProjects,
-                screenWidth: screenWidth,
-              ),
-
-              Projects(
-                title: "Personal Projects",
-                projects: projects,
-                screenWidth: screenWidth,
-              ),
-              // Contanct
-              ContactSection(screenWith: screenWidth),
-              // Footer
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                width: double.maxFinite,
-                alignment: Alignment.center,
-                child: Text(
-                  "Made with ❤️ by Arjun Gangwar.",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: CustomColor.purple,
-                    fontWeight: FontWeight.w400,
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      // Main
+                      AboutMe(
+                        key: navKeys[0],
+                        constraints: constraints,
+                        screenWidth: screenWidth,
+                      ),
+                      // Skills
+                      Skills(
+                        key: navKeys[1],
+                        screenWidth: constraints.maxWidth,
+                      ),
+                      // Experience
+                      ExperienceSection(
+                        key: navKeys[2], // adjust index accordingly
+                        screenWidth: screenWidth,
+                      ),
+                      // Projects
+                      SizedBox(key: navKeys[3]),
+                      Projects(
+                        title: "Work Projects",
+                        projects: workProjects,
+                        screenWidth: screenWidth,
+                      ),
+                      Projects(
+                        title: "Personal Projects",
+                        projects: projects,
+                        screenWidth: screenWidth,
+                      ),
+                      // Contanct
+                      ContactSection(key: navKeys[4], screenWidth: screenWidth),
+                      // Footer
+                      Footer(),
+                    ],
                   ),
                 ),
               ),
@@ -83,6 +96,14 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       },
+    );
+  }
+
+  void animateToSection(int index) {
+    Scrollable.ensureVisible(
+      navKeys[index].currentContext!,
+      duration: Duration(milliseconds: 400),
+      curve: Curves.easeOut,
     );
   }
 }

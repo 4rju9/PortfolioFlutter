@@ -28,7 +28,6 @@ class _SkillDesktopState extends State<SkillDesktop> {
                 title: item.title,
                 imagePath: item.img,
                 width: 200,
-                isMobile: widget.isMobile,
               );
             }).toList(),
           ),

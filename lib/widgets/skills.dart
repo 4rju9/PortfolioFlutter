@@ -28,8 +28,8 @@ class Skills extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           (screenWidth >= kMedDesktopWidth)
-              ? SkillDesktop(isMobile: (screenWidth >= kMinDesktopWidth))
-              : SkillMobile(isMobile: (screenWidth >= kMinDesktopWidth)),
+              ? SkillDesktop(isMobile: (screenWidth < kMinDesktopWidth))
+              : SkillMobile(isMobile: (screenWidth < kMinDesktopWidth)),
         ],
       ),
     );
