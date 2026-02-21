@@ -13,7 +13,12 @@ class ExperienceSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
+      padding: EdgeInsets.only(
+        top: 20,
+        bottom: 10,
+        left: (isDesktop) ? 30 : 15,
+        right: 30,
+      ),
       child: Column(
         children: [
           const Text(
@@ -63,7 +68,7 @@ class _ExperienceItem extends StatelessWidget {
             Expanded(flex: 2, child: getCompanyColumnDesktop(experience)),
 
           SizedBox(
-            width: 60,
+            width: (isDesktop) ? 60 : 30,
             child: Column(
               children: [
                 Container(
@@ -156,31 +161,39 @@ Widget getCompanyColumnDesktop(Experience experience) {
 
 Widget getCompanyColumnMobile(Experience experience) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            experience.role,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          Expanded(
+            child: Text(
+              experience.role,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
+          const SizedBox(width: 6),
           Text(
             experience.duration,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
-      const SizedBox(height: 2),
+      const SizedBox(height: 4),
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            experience.company,
-            style: const TextStyle(fontSize: 16, color: Colors.grey),
+          Expanded(
+            child: Text(
+              experience.company,
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
+          const SizedBox(width: 6),
           Text(
             experience.place,
-            style: const TextStyle(fontSize: 16, color: Colors.grey),
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
         ],
       ),
