@@ -168,14 +168,14 @@ Widget getCompanyColumnMobile(Experience experience) {
           Expanded(
             child: Text(
               experience.role,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           const SizedBox(width: 6),
           Text(
             experience.duration,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             overflow: TextOverflow.ellipsis,
           ),
         ],

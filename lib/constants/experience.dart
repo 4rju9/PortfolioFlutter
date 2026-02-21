@@ -21,9 +21,9 @@ class Experience {
 final List<Experience> experiences = [
   Experience(
     company: "Clickr Technologies",
-    place: "IT Park, Panchkula, Haryana",
-    duration: "November 2025 – January 2026",
-    role: "Android App Developer",
+    place: "Panchkula, Haryana",
+    duration: "Nov 2025 – Jan 2026",
+    role: "Android Developer",
     dotColor: const Color(0xFFA1887F),
     description: [
       "Worked across three production apps, delivering scalable Android features with high performance and reliability.",
@@ -34,9 +34,9 @@ final List<Experience> experiences = [
   ),
   Experience(
     company: "Waste Samaritan",
-    place: "Bengaluru, Karnataka, India",
-    duration: "March 2025 – August 2025",
-    role: "Software Developer Intern",
+    place: "Bengaluru, India",
+    duration: "Mar 2025 – Aug 2025",
+    role: "Android Developer",
     dotColor: const Color(0xFF64B5F6),
     description: [
       "Implemented session timeout mechanism to mitigate unauthorized access attempts.",
@@ -49,8 +49,8 @@ final List<Experience> experiences = [
   Experience(
     company: "Advance Technology System",
     place: "Delhi, India",
-    duration: "November 2024 – December 2024",
-    role: "Android App Developer",
+    duration: "Nov 2024 – Dec 2024",
+    role: "Android Developer",
     dotColor: const Color(0xFFF06292),
     description: [
       "Maintained and modernized Android projects for 5+ clients, updating deprecated code and ensuring 99% uptime.",
@@ -59,10 +59,10 @@ final List<Experience> experiences = [
     ],
   ),
   Experience(
-    company: "ActivePresence Orbol Groups",
+    company: "Orbol Groups",
     place: "Ahmedabad, India",
-    duration: "March 2024 – October 2024",
-    role: "Android App Developer",
+    duration: "Mar 2024 – Oct 2024",
+    role: "Android Developer",
     dotColor: const Color(0xFFBA68C8),
     description: [
       "Converted Figma designs into responsive Android UI screens to enhance user experience.",
