@@ -6,6 +6,16 @@ This project focuses on **UI composition, responsive layouts, theming, and navig
 
 ---
 
+## 📸 Screenshots
+
+| About | Skills | Experience |
+|------|------|-----------|
+| ![About Section](screenshots/about.png) | ![Skills Section](screenshots/skills.png) | ![Experience](screenshots/experience.png) |
+
+| Work Projects | Personal Projects | Contact |
+|-------------|-------------|---------|
+| ![Work Projects](screenshots/workprojects.png) | ![Personal Projects](screenshots/personalprojects.png) | ![Contact Section](screenshots/contacts.png) |
+
 ## 🚀 Key Features
 
 - 🧑‍💻 **Personal Portfolio Sections**
